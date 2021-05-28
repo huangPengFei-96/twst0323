@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+            let和块级作用域
+                -在ES5中，Js的作用域分为全局作用域和局部作用域（通常是用函数区分的，函数内部属于局部作用域）
+                -在ES6中新增了块级作用域，使用{}括起来的区域叫做块级作用域（if或for语句的的小括号也属于块作用域）
+                -在块内使用let声明的变量，只会在当前的块内生效
+                -块级作用域可以任意嵌套
+                -变量i是let声明的，当前的i只在本轮循环有效，座椅每一次循环的i其实都是一个新的变量（
+                你可能会问，如果每一轮循环的变量i都是重新声明的，那它怎么知道上一轮循环的值，从而计算出本轮循环的值？这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算）
+
+
+            let的特点：
+                1、没有声明提升
+                2、不允许重复声明
+                3、块级作用域的出现，实际上使得匿名立即执行函数变大时（IIFE）无用武之地
+        */
+
+      // for循环的计时器，就很合适使用let命令
+      for (let i = 0; i < 10; i++) {
+        /*  由于使用了闭包，
+         1、vari的声明被提升（.var提升到函数定义顶部，此处是全局作用域顶部；let提升到语句块顶部，此处是for循环第一行）
+         2.当运行for循环时为i赋值，并为每个li绑定事件( 注意：运行for循环时只是绑定了事件但是并没有执行事件）。
+         3.当触发事件时（ 注意：此时for循环执行完了），现在需要控制台打印i的值，于是i便沿着作用域链寻找它的值。
+         4.当用var声明时，i会在全局作用域中找到它的值，为5.
+         5.当用let声明时，i会在for的第一行找到它的值，每次的值不一样，分别为0、1、2、3、4等等 */
+        setTimeout(function () {
+          console.log(i); //0 1 2 3 4 5 6 7 8 9
+        });
+      }
+      let i = 10;
+      i= 11;
+      console.log(i); //i is not defined（i未定义）
+
+      //练习1：
+      var a = [];
+      for (var i = 0; i < 10; i++) {
+        a[i] = function () {
+          console.log(i);
+        };
+      }
+      a[6](); //10
+
+      // 练习2:
+      var a = [];
+      for (let i = 0; i < 10; i++) {
+        a[i] = function () {
+          console.log(i);
+        };
+      }
+      a[6](); //6
+    </script>
+  </body>
+</html>

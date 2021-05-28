@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 成员：属性和方法统称为成员
+      function Person() {
+        // 实例属性
+        this.name = name;
+        this.sex = sex;
+        // 实例方法
+        this.eat = function () {
+          console.log("西餐");
+        };
+      }
+
+      // 直接添加飞构造函数的属性和方法，就叫做静态属性、静态方法或静态成员
+      Person.hello = "world ";
+      Person.text = function () {
+        console.log("静态成员");
+      };
+
+      // 实例化对象获取静态成员
+      // 实例化对象只能拿到自身或原型链的属性或方法
+
+      /*
+           Object.create(prototype,descriptors)是es5新增的一个静态方法，用来定义一个实例化对象
+                   第一个参数是必须填的，指定原型对象，可以为null
+                   第二个参数是可选参数，包含一个或多个属性描述的JavaScript对象。
+                           value：制定属性值
+                           writable：默认false，设置属性值是否可写
+                           enumerable：默认false，设置属性是否可遍历（for/in）
+                           configurable：默认false，设置是否可修改属性特性和删除属性
+
+            Object.defineProperty(prototype,descriptors)函数可为对象添加属性或修改现有属性，若指定的属性名在对象中不催在，则执行添加操作；如果对象中存在同名属性，则执行系应该操作
+            Object.defineProperties(prototype,descriptors)函数可一次定义多个属性
+       */
+      var odj = Object.create(null);
+      console.log(odj);
+
+      var oBj = Object.create(null, {
+        name: {
+          value: "李世明",
+          writable: true,
+          enumerable: true,
+          configurable: true,
+        },
+        sex: {
+          value: "nan",
+          writable: true,
+        },
+      });
+      console.log(oBj, oBj.name);
+      //   writable:是否可写
+      oBj.sex = "女";
+      oBj.name = "嬴政";
+      console.log(oBj);
+      // enumerable:是否可以遍历
+      for (var key in oBj) {
+        console.log(key);
+      }
+      //   configurable:是否可以删除
+      delete oBj.sex;
+      console.log(oBj.sex);
+
+      //    Object.defineProperty(prototype,descriptors)和 Object.defineProperties(prototype,descriptors)
+      var obj = Object.defineProperty(oBj, {
+        sge: {
+          value: "nan",
+          enumerable: true,
+        },
+      });
+      var obJ = Object.defineProperties(oBj, {
+        color: {
+          value: "红树湾",
+        },
+        legda: {
+          value: "阿莎",
+          configurable: true,
+        },
+      });
+      console.log(obj, obJ);
+    </script>
+  </body>
+</html>

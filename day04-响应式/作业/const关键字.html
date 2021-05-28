@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            常量：不会变化的数据，有些时候有些数据不允许修改的，所以需要定义常量
+                特点：
+                    -constructor声明的只是一个只读的常量（定义常量可写大写）
+                    -const声明的的常量不得改变值
+                    -const声明的常量如果是对象，可修改对象的内容
+                    -const一旦声明常量，就立即初始化，不能留在以后赋值
+                    -const只在声明所在的块级作用域内有效
+                    -const声明的常量，也与let一样不可重复声明
+                    -let、const和class声明的全局变量，不属于顶层对象的属性
+        */
+
+        let a=10;
+        a=11;
+        console.log(a)
+       /*  const i=10;
+        i=21;
+        console.log(i)// Assignment to constant variable声明的的常量不得改变值 */
+
+        const b=224;
+        var sd=242;
+        console.log(window.b);//undefined
+        console.log(window.sd);//242
+    </script>
+</body>
+</html>

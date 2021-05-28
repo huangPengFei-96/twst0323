@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 需求1、求出下列数组中多少手机的价格超出0的有多少
+      var Price = [
+        {
+          type: "金色",
+          changePrice: 0,
+        },
+        {
+          type: "银色",
+          changePrice: 40,
+        },
+        {
+          type: "黑色",
+          changePrice: 90,
+        },
+
+        {
+          type: "16G",
+          changePrice: 0,
+        },
+        {
+          type: "64G",
+          changePrice: 300,
+        },
+        {
+          type: "128G",
+          changePrice: 900,
+        },
+        {
+          type: "256G",
+          changePrice: 1300,
+        },
+        {
+          type: "公开版",
+          changePrice: 0,
+        },
+        {
+          type: "移动版",
+          changePrice: -1000,
+        },
+        {
+          type: "官方标配",
+          changePrice: 0,
+        },
+        {
+          type: "优惠移动版",
+          changePrice: -240,
+        },
+        {
+          type: "电信优惠版",
+          changePrice: -390,
+        },
+      ];
+
+      var pre = Price.reduce(function (preview, item) {
+        if (item.changePrice > 0) {
+          return ++preview;
+        } else {
+          return preview;
+        }
+      }, 0);
+      console.log(pre);
+
+       //需求2: 根据一个数组,得到一个对象. 得到的新的对象键,要求是数组中name属性的值
+      var re= Price.reduce(function(preVale,item){
+            preVale[item.type]=item.changePrice
+            return preVale
+       },{})
+       console.log(re)
+    </script>
+  </body>
+</html>
